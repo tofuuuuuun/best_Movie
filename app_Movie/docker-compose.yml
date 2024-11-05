@@ -1,0 +1,17 @@
+services:
+  react:
+    build:
+      args:
+        - NODE_VER=20.17.0-slim
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      # - ./:/home/node/app_Movie
+      - ./frontend:/home/node/app_Movie
+      - node_modules:/home/node/app_Movie/node_modules
+    ports:
+      - 5174:5174
+
+volumes:
+  node_modules:
