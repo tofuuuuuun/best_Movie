@@ -17,10 +17,10 @@ export const ResponseMovies = (props: ResponseMoviesProps) => {
     return (
         <ul className='modalList'>
             {responseMovies.map((movie, index) => (
-                <li className='albumItems' id={index === 0 ? 'firstItems' : ''} key={index} >
-                    <img className='albumImage' src={`https://image.tmdb.org/t/p/original/${movie.poster_path ?? ''}`} loading='lazy' />
-                    <div className='l-albumInfo'>
-                        <span className='albumName font-wb'>{movie.original_title}</span>
+                <li className='movieItems' id={index === 0 ? 'firstItems' : ''} key={index} >
+                    <img className='moviePoster' src={`https://image.tmdb.org/t/p/original/${movie.poster_path ?? ''}`} loading='lazy' />
+                    <div className='l-movieInfo'>
+                        <span className='movieTitle font-wb'>{movie.original_title}</span>
                     </div>
                     <ResultCheckboxButton
                         id={movie.id}

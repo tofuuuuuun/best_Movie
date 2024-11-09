@@ -11,10 +11,10 @@ export const ResetArea = (props: ResetAreaProps) => {
     return (
         <div className='resetArea m-top-1em'>
             <div className='resetWrapper ta-center'>
-                <button className='l-button action m-right-1em txt-white bg-turquoise reset action' onClick={resetAlbumList}>
+                <button className='l-button action m-right-1em txt-navy bg-yellow reset action' onClick={resetAlbumList}>
                     <img src={rotateIcon} alt='リセットボタののアイコン' />
                 </button>
-                <button className='l-button txt-white bg-turquoise capture action' onClick={handleCapture}>
+                <button className='l-button txt-navy bg-yellow capture action' onClick={handleCapture}>
                     <img src={cameraIcon} alt='キャプチャボタンのアイコン' />
                 </button>
             </div>

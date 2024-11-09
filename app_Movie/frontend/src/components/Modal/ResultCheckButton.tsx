@@ -18,7 +18,7 @@ export const ResultCheckboxButton = (props: CheckboxButtonProps) => {
                 checked={toggleDisplayFlg}
                 onChange={() => toggleAlbum(id, title, poster)}
             />
-            <label htmlFor={`checkbox-${id}`} className={toggleDisplayFlg ? 'l-button bg-orange txt-white action ta-center' : 'l-button bg-turquoise txt-white action ta-center'}>
+            <label htmlFor={`checkbox-${id}`} className={toggleDisplayFlg ? 'l-button bg-orange txt-navy action ta-center' : 'l-button bg-yellow txt-navy action ta-center'}>
                 {toggleDisplayFlg ? '選択中' : '選択'}
             </label>
         </>
