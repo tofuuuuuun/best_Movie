@@ -7,7 +7,7 @@ import { MoviePosterList } from './components/MoviePosterList.tsx';
 import { ResetArea } from './components/ResetArea.tsx';
 import { useDebounce } from './components/debounce.tsx';
 import { TOKEN } from './Constants.tsx';
-// import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas';
 
 type ResponseMoviesType = {
   id: string;
