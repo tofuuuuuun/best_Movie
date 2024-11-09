@@ -7,9 +7,9 @@ type MovieType = {
 }
 
 type ResponseMoviesProps = {
-    toggleAlbum: (id: string, albumName: string, albumArt: string) => void;
+    toggleAlbum: (id: string, title: string, poster: string) => void;
     responseMovies: MovieType[];
-    moviePosterList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
+    moviePosterList: { id: string, original_title: string, poster_path: string }[];
 }
 
 export const ResponseMovies = (props: ResponseMoviesProps) => {
@@ -24,8 +24,8 @@ export const ResponseMovies = (props: ResponseMoviesProps) => {
                     </div>
                     <ResultCheckboxButton
                         id={movie.id}
-                        name={movie.original_title}
-                        image={movie.poster_path}
+                        title={movie.original_title}
+                        poster={movie.poster_path}
                         toggleDisplayFlg={moviePosterList.some((item) => item.id === movie.id)}
                         toggleAlbum={toggleAlbum}
                     />

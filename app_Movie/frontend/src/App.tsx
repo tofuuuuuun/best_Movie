@@ -37,7 +37,6 @@ export const App = () => {
   const clearModal = () => {
     setMovieTitle('');
     setResponseMovies([]);
-    setMoviePosterList([]);
   }
 
   const debounce = useDebounce(500);
@@ -66,13 +65,12 @@ export const App = () => {
   }
 
   const deleteAlbum = (id: string) => {
-    const deleteArray = albumArtList.filter(album => album.id !== id);
-    setAlbumArtList(deleteArray);
+    const deleteArray = moviePosterList.filter(movie => movie.id !== id);
+    setMoviePosterList(deleteArray);
     setResetButtonVisible(false);
-    if (albumArtList.length <= 10) {
+    if (moviePosterList.length <= 10) {
       setResetButtonVisible(false);
       setAddButtonVisible(true);
-      setFilterResponseAlbum([]);
     }
   }
 
@@ -144,15 +142,13 @@ export const App = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (albumArtList.length === 10) {
-  //     // 十枚選択したらリセットボタンとキャプチャボタンを表示する
-  //     setResetButtonVisible(true);
-  //     setAddButtonVisible(false);
-  //     setModalIsOpen(false);
-  //   }
-
-  // }, [albumArtList.length]);
+  useEffect(() => {
+    if (moviePosterList.length === 10) {
+      setResetButtonVisible(true);
+      setAddButtonVisible(false);
+      setModalIsOpen(false);
+    }
+  }, [moviePosterList]);
 
 
   return (
@@ -171,7 +167,6 @@ export const App = () => {
               />)}
             {isSelectStart && (
               <MoviePosterList
-                isSelectStart={isSelectStart}
                 moviePosterList={moviePosterList}
                 deleteAlbum={deleteAlbum}
               />

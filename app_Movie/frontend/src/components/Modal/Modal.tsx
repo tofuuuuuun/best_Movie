@@ -16,8 +16,8 @@ type ModalProps = {
     responseMovies: MovieType[];
     clearModal: () => void;
     deleteAlbum: (id: string) => void;
-    moviePosterList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
-    toggleAlbum: (id: string, albumName: string, albumArt: string) => void;
+    moviePosterList: { id: string, original_title: string, poster_path: string }[];
+    toggleAlbum: (id: string, original_title: string, poster_path: string) => void;
     errorMessage: string;
 }
 
