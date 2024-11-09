@@ -116,7 +116,7 @@
 .icon-add {
     display: inline-block;
     vertical-align: middle;
-    color: #009688;
+    color: #24272F;
     line-height: 1;
     width: 1.1em;
     height: 0.2em;
@@ -167,7 +167,7 @@
     border-radius: 5px;
     border: none;
     box-shadow: 2px 2px 15px 1px #1a1a1a;
-    background-color: #F1F8E9;
+    background-color: #FFC107;
     cursor: pointer;
 }
 
