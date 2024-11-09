@@ -1,42 +1,37 @@
 import { ResultCheckboxButton } from './ResultCheckButton';
 
-type ResponseMoviesType = {
-    album_type: string;
+type MovieType = {
     id: string;
-    images: { url: string }[];
-    name: string;
-    release_date: string;
-    type: string;
-    artists: { id: string, name: string }[];
+    original_title: string;
+    poster_path: string;
 }
 
 type ResponseMoviesProps = {
-    toggleAlbum: (id: string, albumName: string, albumArt: string, albumArtist: string) => void;
-    responseMovies: ResponseMoviesType[];
-    albumArtList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
+    toggleAlbum: (id: string, albumName: string, albumArt: string) => void;
+    responseMovies: MovieType[];
+    moviePosterList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
 }
 
 export const ResponseMovies = (props: ResponseMoviesProps) => {
-    const { toggleAlbum, responseMovies, albumArtList } = props;
+    const { toggleAlbum, responseMovies, moviePosterList } = props;
     return (
         <ul className='modalList'>
-            {responseMovies.map((album, index) => (
+            {responseMovies.map((movie, index) => (
                 <li className='albumItems' id={index === 0 ? 'firstItems' : ''} key={index} >
-                    <img className='albumImage' src={album.images.length !== 0 ? album.images[0].url : ''} loading='lazy' />
+                    <img className='albumImage' src={`https://image.tmdb.org/t/p/original/${movie.poster_path ?? ''}`} loading='lazy' />
                     <div className='l-albumInfo'>
-                        <span className='albumName font-wb'>{album.name} ({album.release_date.substring(0, 4)})</span>
-                        <span className='artistsName'>{album.artists.map((value) => value.name).join(',')}</span>
+                        <span className='albumName font-wb'>{movie.original_title}</span>
                     </div>
                     <ResultCheckboxButton
-                        id={album.id}
-                        name={album.name}
-                        image={album.images[0]?.url}
-                        artists={album.artists.map((value) => value.name).join(',')}
-                        toggleDisplayFlg={albumArtList.some((item) => item.id === album.id)}
+                        id={movie.id}
+                        name={movie.original_title}
+                        image={movie.poster_path}
+                        toggleDisplayFlg={moviePosterList.some((item) => item.id === movie.id)}
                         toggleAlbum={toggleAlbum}
                     />
                 </li>
-            ))}
-        </ul>
+            ))
+            }
+        </ul >
     );
 }
