@@ -6,6 +6,7 @@ import { AddButton } from './components/AddButton.tsx';
 import { MoviePosterList } from './components/MoviePosterList.tsx';
 import { ResetArea } from './components/ResetArea.tsx';
 import { useDebounce } from './components/debounce.tsx';
+import { TOKEN } from './Constants.tsx';
 // import html2canvas from 'html2canvas';
 
 type ResponseMoviesType = {
@@ -14,30 +15,13 @@ type ResponseMoviesType = {
   poster_path: string;
 }
 
-type ResponseAlbumType = {
-  album_type: string;
-  id: string;
-  images: { url: string }[];
-  name: string;
-  release_date: string;
-  type: string;
-  artists: { id: string, name: string }[];
-}
-
-type MoviePosterType = {
-  id: string;
-  albumName: string;
-  albumArt: string;
-  albumArtist: string;
-}
-
 export const App = () => {
   const [isSelectStart, setIsSelectStart] = useState<boolean>(false);
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
   const [addButtonVisible, setAddButtonVisible] = useState(false);
   const [movieTitle, setMovieTitle] = useState('');
   const [responseMovies, setResponseMovies] = useState<ResponseMoviesType[]>([]);
-  const [moviePosterList, setMoviePosterList] = useState<MoviePosterType[]>([]);
+  const [moviePosterList, setMoviePosterList] = useState<ResponseMoviesType[]>([]);
   const [resetButtonVisible, setResetButtonVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -52,6 +36,7 @@ export const App = () => {
   }
   const clearModal = () => {
     setMovieTitle('');
+    setResponseMovies([]);
     setMoviePosterList([]);
   }
 
@@ -68,15 +53,14 @@ export const App = () => {
     debounceSearch(event.target.value);
   }
 
-  // アルバムアート一覧の表示切替を行う
-  const toggleAlbum = (id: string, albumName: string, albumArt: string) => {
-    setAlbumArtList((prevList) => {
+  const toggleAlbum = (id: string, title: string, poster: string) => {
+    console.log(id, title, poster);
+    setMoviePosterList((prevList) => {
       const isSelected = prevList.some((item) => item.id === id);
       if (isSelected) {
-        // すでに選択済みのアルバムを選択した場合、選択済みのアルバムを削除する
         return prevList.filter((item) => item.id !== id);
       } else {
-        return [...prevList, { id, albumName, albumArt, albumArtist }];
+        return [...prevList, { id: id, original_title: title, poster_path: poster }];
       }
     });
   }
@@ -106,7 +90,7 @@ export const App = () => {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGNiYjVkYTI1NzRmMWM0YmZlYWQ5MDZhNTY3ODJhYyIsIm5iZiI6MTczMDk4MzQzOS4zNzAxNTQ5LCJzdWIiOiI2NmYwMDY3ZjdmZjJiZjU3Y2QyNjRlN2MiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.POVQ9Y7M1-dwipH5Ijr1MiNx8a8xHqpnmwrCSwxht9w'
+        Authorization: TOKEN
       }
     };
 
