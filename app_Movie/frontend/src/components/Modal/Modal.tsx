@@ -2,14 +2,10 @@ import { SearchForm } from './SearchForm'
 import { ErrorMessage } from '../../error/ErrorMessage';
 import { ResponseMovies } from './ResponseMovies';
 
-type ResponseMovies = {
-    album_type: string;
+type MovieType = {
     id: string;
-    images: { url: string }[];
-    name: string;
-    release_date: string;
-    type: string;
-    artists: { id: string, name: string }[];
+    original_title: string;
+    poster_path: string;
 }
 
 type ModalProps = {
@@ -17,16 +13,16 @@ type ModalProps = {
     searchMovie: (artistName: string) => void;
     movieTitle: string;
     inputMovieTitle: (event: { target: { value: string } }) => void;
-    responseMovies: ResponseMovies[];
+    responseMovies: MovieType[];
     clearModal: () => void;
     deleteAlbum: (id: string) => void;
-    albumArtList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
-    toggleAlbum: (id: string, albumName: string, albumArt: string, albumArtist: string) => void;
+    moviePosterList: { id: string, albumName: string, albumArt: string, albumArtist: string }[];
+    toggleAlbum: (id: string, albumName: string, albumArt: string) => void;
     errorMessage: string;
 }
 
 export const Modal = (props: ModalProps) => {
-    const { toggleModal, searchMovie, movieTitle, inputMovieTitle, responseMovies, clearModal, albumArtList, toggleAlbum, errorMessage } = props;
+    const { toggleModal, searchMovie, movieTitle, inputMovieTitle, responseMovies, clearModal, moviePosterList, toggleAlbum, errorMessage } = props;
 
     const changeFlg = () => toggleModal(false);
     return (
@@ -46,7 +42,7 @@ export const Modal = (props: ModalProps) => {
                             <ResponseMovies
                                 toggleAlbum={toggleAlbum}
                                 responseMovies={responseMovies}
-                                albumArtList={albumArtList}
+                                moviePosterList={moviePosterList}
                             />
                         </div>
                     )}
