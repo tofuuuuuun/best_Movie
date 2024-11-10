@@ -21,11 +21,13 @@ input[type="checkbox"]{display: none;}
 .m-top-2em { margin-top: 2em; }
 .m-top-3em { margin-top: 3em; }
 
+.m-right-30px{margin-right: 30px;}
 .m-right-05em{margin-right: 0.5em;}
 .m-right-1em { margin-right: 1em; }
 .m-right-2em { margin-right: 2em; }
 .m-right-3em { margin-right: 3em; }
 
+.m-left-30px { margin-left: 30px; }
 .m-left-1em { margin-left: 1em; }
 .m-left-2em { margin-left: 2em;}
 .m-left-3em { margin-left: 3em;}
