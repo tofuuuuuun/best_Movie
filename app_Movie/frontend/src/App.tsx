@@ -15,6 +15,10 @@ type ResponseMoviesType = {
   poster_path: string;
 }
 
+type ResponseTopRatedMoviesType = {
+  poster_path: string;
+}
+
 export const App = () => {
   const [isSelectStart, setIsSelectStart] = useState<boolean>(false);
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
@@ -23,6 +27,7 @@ export const App = () => {
   const [responseMovies, setResponseMovies] = useState<ResponseMoviesType[]>([]);
   const [moviePosterList, setMoviePosterList] = useState<ResponseMoviesType[]>([]);
   const [resetButtonVisible, setResetButtonVisible] = useState(false);
+  const [topRateMovieList, setTopRateMovieList] = useState<ResponseTopRatedMoviesType[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
 
   const selectStart = () => {
@@ -53,7 +58,6 @@ export const App = () => {
   }
 
   const toggleAlbum = (id: string, title: string, poster: string) => {
-    console.log(id, title, poster);
     setMoviePosterList((prevList) => {
       const isSelected = prevList.some((item) => item.id === id);
       if (isSelected) {
@@ -62,6 +66,8 @@ export const App = () => {
         return [...prevList, { id: id, original_title: title, poster_path: poster }];
       }
     });
+
+
   }
 
   const deleteAlbum = (id: string) => {
@@ -82,7 +88,6 @@ export const App = () => {
   }
 
   const searchMovie = async (movieTitle: string) => {
-
     // APIリクエスト
     const options = {
       method: 'GET',
@@ -92,13 +97,32 @@ export const App = () => {
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=en-US&page=1`, options)
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&page=1`, options)
       .then(res =>
         res.json())
       .then(res =>
         setResponseMovies([...responseMovies, ...res["results"]]))
       .catch(err =>
         setErrorMessage(err.message));
+  };
+
+  const getTopRatedMovies = () => {
+    const totalPages = 3;
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: TOKEN
+      }
+    };
+
+    for (let page = 1; page <= totalPages; page++) {
+      fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
+        .then(res => res.json())
+        .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
+        .catch(err => setErrorMessage(err.message));
+    }
+
   };
 
   // html2canvasを使用してキャプチャーを取得し、共有する
@@ -148,8 +172,8 @@ export const App = () => {
       setAddButtonVisible(false);
       setModalIsOpen(false);
     }
+    getTopRatedMovies();
   }, [moviePosterList]);
-
 
   return (
     <>
@@ -158,7 +182,7 @@ export const App = () => {
         <div className='contentWrapper'>
           <div className='l-contentWrapper'>
             {!isSelectStart && (
-              <Introduction selectStart={selectStart} />
+              <Introduction selectStart={selectStart} topRateMovieList={topRateMovieList} />
             )}
             {addButtonVisible && (
               <AddButton

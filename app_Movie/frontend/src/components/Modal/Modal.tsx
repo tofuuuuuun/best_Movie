@@ -38,7 +38,7 @@ export const Modal = (props: ModalProps) => {
                     />
                     <ErrorMessage errorMessage={errorMessage} />
                     {responseMovies.length !== 0 && (
-                        <div className='m-bottom-1em'>
+                        <div className='m-top-1em'>
                             <ResponseMovies
                                 toggleAlbum={toggleAlbum}
                                 responseMovies={responseMovies}

@@ -8,12 +8,28 @@
     padding: 1em 1em 0.5em 1em;
 }
 
-.l-moviePoster {
+.l-addButton {
     width: 220px;
     height: 220px;
     box-shadow: 2px 2px 15px 1px #1a1a1a;
     border-radius: 5px;
 }
+
+.l-moviePoster {
+    width: 220px;
+    height: 330px;
+    box-shadow: 2px 2px 15px 1px #1a1a1a;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.l-movieAddPoster {
+    width: 220px;
+    height: 220px;
+    box-shadow: 2px 2px 15px 1px #1a1a1a;
+    border-radius: 5px;
+}
+
 .l-moviePoster::after{
     background-color: #f05d31;
     z-index: 100;
@@ -72,20 +88,21 @@
     width: 80%;
 }
 
-.l-autocomplete{
-    position: absolute;
-    width: 75%; 
-    left: 5px;
-    top: 45px;
+.l-gridPoster{
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 30px;
 }
 
-.l-searchArtistImage{
-    width: 30%;
+.l-topRateMovies{
+    width: 80px;
+    height: 120px;
+    border-radius: 3px;
 }
 
-.l-movieInfo{
-    width: 60%;
-    padding-left: 1em;
+.girdPosterWrapper{
+    display: flex;
+    overflow: hidden;
 }
 
 .icon-close {
@@ -149,6 +166,10 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.moviePoster{
+    border-radius: 5px;
 }
 
 .moviePosterList,.movieAddButton {
@@ -234,7 +255,7 @@
     max-width: 100%;
     width: 560px;
     top: 10%;
-    background: #F1F8E9;
+    background: #24272F;
     padding: 1em 1em 1em 1em;
     text-align: left;
     border-radius: 5px;
@@ -318,7 +339,8 @@ input[type=radio]{display: none;}
 .selectAlbumArtist{ font-size:0.9em; }
 
 .modalList{
-    background-color: #e7eaed;
+    color: #FAFAFA;
+    background-color: #2e323c;
     height: 400px;
     border-radius: 10px;
     overflow-y: auto;
@@ -354,11 +376,10 @@ input[type=radio]{display: none;}
 }
 
 .modalList::-webkit-scrollbar-thumb, .autocompleteList::-webkit-scrollbar-thumb {
-    background-color: #009688;
+    background-color: #2e303d;
     border-radius: 10px;
 }
 
-/* エフェクト系 */
 .fadeIn{
     animation: fadeIn 2s; 
     animation-fill-mode: both;
@@ -378,15 +399,77 @@ input[type=radio]{display: none;}
     100% { opacity: 0; }
 }
 
+.scroll-infinity__list--left1 {
+    animation: infinity-scroll-left1 50s infinite linear 0.5s both;
+}
+
+@keyframes infinity-scroll-left1{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.scroll-infinity__list--left2 {
+    animation: infinity-scroll-left2 51.3s infinite linear 0.5s both;
+}
+
+@keyframes infinity-scroll-left2{
+    from{
+        transform: translateX(0);
+    }
+    to{
+        transform: translateX(-100%);
+    }
+}
+
+.scroll-infinity__list--right1 {
+    animation: infinity-scroll-right1 49.8s infinite linear 0.5s both;
+}
+
+@keyframes infinity-scroll-right1{
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+.scroll-infinity__list--right2 {
+    animation: infinity-scroll-right2 53s infinite linear 0.5s both;
+}
+
+@keyframes infinity-scroll-right2 {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
+
+
 @media (max-width:640px) {
 .l-header{ height: auto;}
 .l-contentWrapper{
     padding: 1em 1em 0 1em;
 }
-.l-moviePoster {
+.l-addButton {
     width: 140px;
     height: 140px;
 }
+.l-moviePoster {
+    width: 160px;
+    height: 240px;
+}
+.l-movieAddPoster {
+    width: 140px;
+    height: 140px;
+}
+
 .l-albumList{
     padding-left: 0;
     padding-right: 0;
@@ -448,7 +531,6 @@ input[type=radio]{display: none;}
 }
 
 .modal-content {
-    background: #F1F8E9;
     text-align: left;
     padding: 1em 0.5em 1em 1em;
     border-radius: 5px;
@@ -473,7 +555,7 @@ input[type=radio]{display: none;}
 .moviePoster{ width: 30%; }
 .movieTitle{ font-size: 1em; }
 .selectName{
-    font-size: 1.1em; font-weight: bold;
+    font-size: 1em; font-weight: bold;
 }
 
 }
