@@ -9,13 +9,12 @@ import { useDebounce } from './components/debounce.tsx';
 import { TOKEN } from './Constants.tsx';
 import html2canvas from 'html2canvas';
 
+type ResponseTopRatedMoviesType = {
+  poster_path: string;
+}
 type ResponseMoviesType = {
   id: string;
   original_title: string;
-  poster_path: string;
-}
-
-type ResponseTopRatedMoviesType = {
   poster_path: string;
 }
 
@@ -27,8 +26,8 @@ export const App = () => {
   const [responseMovies, setResponseMovies] = useState<ResponseMoviesType[]>([]);
   const [moviePosterList, setMoviePosterList] = useState<ResponseMoviesType[]>([]);
   const [resetButtonVisible, setResetButtonVisible] = useState(false);
-  const [topRateMovieList, setTopRateMovieList] = useState<ResponseTopRatedMoviesType[]>([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [topRateMovieList, setTopRateMovieList] = useState<ResponseTopRatedMoviesType[]>([]);
 
   const selectStart = () => {
     setIsSelectStart(!isSelectStart);
@@ -66,8 +65,6 @@ export const App = () => {
         return [...prevList, { id: id, original_title: title, poster_path: poster }];
       }
     });
-
-
   }
 
   const deleteAlbum = (id: string) => {
@@ -80,9 +77,8 @@ export const App = () => {
     }
   }
 
-  const resetAlbumList = () => {
+  const resetMoviePosterList = () => {
     clearModal();
-
     setAddButtonVisible(true);
     setResetButtonVisible(false);
   }
@@ -116,14 +112,14 @@ export const App = () => {
       }
     };
 
-    for (let page = 1; page <= totalPages; page++) {
-      fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
-        .then(res => res.json())
-        .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
-        .catch(err => setErrorMessage(err.message));
-    }
+
+    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=1&region=japan`, options)
+      .then(res => res.json())
+      .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
+      .catch(err => setErrorMessage(err.message));
 
   };
+
 
   // html2canvasを使用してキャプチャーを取得し、共有する
   const handleCapture = () => {
@@ -172,7 +168,6 @@ export const App = () => {
       setAddButtonVisible(false);
       setModalIsOpen(false);
     }
-    getTopRatedMovies();
   }, [moviePosterList]);
 
   return (
@@ -182,7 +177,7 @@ export const App = () => {
         <div className='contentWrapper'>
           <div className='l-contentWrapper'>
             {!isSelectStart && (
-              <Introduction selectStart={selectStart} topRateMovieList={topRateMovieList} />
+              <Introduction selectStart={selectStart} />
             )}
             {addButtonVisible && (
               <AddButton
@@ -198,7 +193,7 @@ export const App = () => {
           </div>
           {resetButtonVisible && (
             <ResetArea
-              resetAlbumList={resetAlbumList}
+              resetMoviePosterList={resetMoviePosterList}
               handleCapture={handleCapture}
             />
           )}
