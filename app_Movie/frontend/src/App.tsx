@@ -103,7 +103,7 @@ export const App = () => {
   };
 
   const getTopRatedMovies = () => {
-    const totalPages = 3;
+    const totalPages = [1, 2, 3, 4, 5, 6];
     const options = {
       method: 'GET',
       headers: {
@@ -111,13 +111,12 @@ export const App = () => {
         Authorization: TOKEN
       }
     };
-
-
-    fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=1&region=japan`, options)
-      .then(res => res.json())
-      .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
-      .catch(err => setErrorMessage(err.message));
-
+    totalPages.forEach(page => {
+      fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
+        .then(res => res.json())
+        .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
+        .catch(err => setErrorMessage(err.message));
+    });
   };
 
 
@@ -168,6 +167,7 @@ export const App = () => {
       setAddButtonVisible(false);
       setModalIsOpen(false);
     }
+    getTopRatedMovies()
   }, [moviePosterList]);
 
   return (
@@ -177,7 +177,7 @@ export const App = () => {
         <div className='contentWrapper'>
           <div className='l-contentWrapper'>
             {!isSelectStart && (
-              <Introduction selectStart={selectStart} />
+              <Introduction selectStart={selectStart} topRateMovieList={topRateMovieList} />
             )}
             {addButtonVisible && (
               <AddButton

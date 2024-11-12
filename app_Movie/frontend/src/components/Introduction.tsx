@@ -1,11 +1,15 @@
 import { API_URL1, API_URL2, API_URL3, API_URL4 } from "../Image_URL";
-
+type ResponseTopRatedMoviesType = {
+    poster_path: string;
+}
 type IntroductionProps = {
     selectStart: () => void;
+    topRateMovieList: ResponseTopRatedMoviesType[];
 }
 
 export const Introduction = (props: IntroductionProps) => {
     const { selectStart } = props;
+
     return (
         <>
             <div className='startText m-bottom-3em ta-center fadeIn'>
@@ -66,7 +70,7 @@ export const Introduction = (props: IntroductionProps) => {
                         }
                     </ul>
                 </div>
-            </div>
+            </div >
             <div className='ta-center'>
                 <button className='startButton bg-yellow txt-navy font-wb' onClick={() => selectStart()}>映画を選ぶ
                 </button>
