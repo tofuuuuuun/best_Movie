@@ -28,6 +28,11 @@ export const App = () => {
   const [resetButtonVisible, setResetButtonVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [topRateMovieList, setTopRateMovieList] = useState<ResponseTopRatedMoviesType[]>([]);
+  const [randomURLList1, setRandomURLList1] = useState<ResponseTopRatedMoviesType[]>([]);
+  const [randomURLList2, setRandomURLList2] = useState<ResponseTopRatedMoviesType[]>([]);
+  const [randomURLList3, setRandomURLList3] = useState<ResponseTopRatedMoviesType[]>([]);
+  const [randomURLList4, setRandomURLList4] = useState<ResponseTopRatedMoviesType[]>([]);
+
 
   const selectStart = () => {
     setIsSelectStart(!isSelectStart);
@@ -103,7 +108,7 @@ export const App = () => {
   };
 
   const getTopRatedMovies = () => {
-    const totalPages = [1, 2, 3, 4, 5, 6];
+    const totalPages = [1, 2, 3, 4, 5];
     const options = {
       method: 'GET',
       headers: {
@@ -111,13 +116,47 @@ export const App = () => {
         Authorization: TOKEN
       }
     };
-    totalPages.forEach(page => {
-      fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
-        .then(res => res.json())
-        .then(res => setTopRateMovieList(prevList => [...prevList, ...res["results"]]))
-        .catch(err => setErrorMessage(err.message));
-    });
-  };
+
+    Promise.all(
+      totalPages.map(page =>
+        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
+          .then(res => res.json())
+      )
+    )
+      .then(responses => {
+        const allResults = responses.flatMap(res => res.results);
+        setTopRateMovieList((prev) => ([...prev, ...allResults]));
+
+        const randomURLs1 = [];
+        for (let i = 1; i <= 10; i++) {
+          const randomIndex = Math.floor(Math.random() * allResults.length);
+          randomURLs1.push(allResults[randomIndex]);
+        }
+        setRandomURLList1(randomURLs1);
+
+        const randomURLs2 = [];
+        for (let i = 1; i <= 10; i++) {
+          const randomIndex = Math.floor(Math.random() * allResults.length);
+          randomURLs2.push(allResults[randomIndex]);
+        }
+        setRandomURLList2(randomURLs2);
+
+        const randomURLs3 = [];
+        for (let i = 1; i <= 10; i++) {
+          const randomIndex = Math.floor(Math.random() * allResults.length);
+          randomURLs3.push(allResults[randomIndex]);
+        }
+        setRandomURLList3(randomURLs3);
+
+        const randomURLs4 = [];
+        for (let i = 1; i <= 10; i++) {
+          const randomIndex = Math.floor(Math.random() * allResults.length);
+          randomURLs4.push(allResults[randomIndex]);
+        }
+        setRandomURLList4(randomURLs4);
+      })
+      .catch(err => setErrorMessage(err.message));
+  }
 
 
   // html2canvasを使用してキャプチャーを取得し、共有する
@@ -177,7 +216,14 @@ export const App = () => {
         <div className='contentWrapper'>
           <div className='l-contentWrapper'>
             {!isSelectStart && (
-              <Introduction selectStart={selectStart} topRateMovieList={topRateMovieList} />
+              <Introduction
+                selectStart={selectStart}
+                topRateMovieList={topRateMovieList}
+                randomURLList1={randomURLList1}
+                randomURLList2={randomURLList2}
+                randomURLList3={randomURLList3}
+                randomURLList4={randomURLList4}
+              />
             )}
             {addButtonVisible && (
               <AddButton
