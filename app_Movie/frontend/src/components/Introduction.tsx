@@ -12,14 +12,13 @@ type IntroductionProps = {
 
 export const Introduction = (props: IntroductionProps) => {
     const { selectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
-    console.log(randomURLList1);
     return (
         <>
-            <div className='startText m-bottom-3em ta-center fadeIn'>
-                <h2 className='txt-navy m-bottom-05em'>BEST MOVIE</h2>
+            <div className='startText m-bottom-3em ta-center fadeIn l-overflowHidden'>
+                <h2 className='txt-white m-bottom-05em'>BEST MOVIE</h2>
                 <div className='l-gridPosterWrapper'>
-                    <div className='girdPosterBlockWrapper'>
-                        <ul className='l-gridPoster scroll-infinity__list--left1 infinity-scroll-left1'>
+                    <div className='girdPosterBlockWrapper m-right-1em'>
+                        <ul className='l-gridPoster scroll-infinity__list--left1 infinity-scroll-left1 m-bottom-2em'>
                             {randomURLList1.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))
@@ -32,8 +31,8 @@ export const Introduction = (props: IntroductionProps) => {
                             }
                         </ul>
                     </div>
-                    <div className='girdPosterBlockWrapper'>
-                        <ul className='l-gridPoster scroll-infinity__list--right1 infinity-scroll-right1'>
+                    <div className='girdPosterBlockWrapper m-right-1em'>
+                        <ul className='l-gridPoster scroll-infinity__list--right1 infinity-scroll-right1 m-bottom-2em'>
                             {randomURLList2.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))
@@ -46,14 +45,14 @@ export const Introduction = (props: IntroductionProps) => {
                             }
                         </ul>
                     </div>
-                    <div className='girdPosterBlockWrapper'>
-                        <ul className='l-gridPoster scroll-infinity__list--left2 infinity-scroll-left2'>
+                    <div className='girdPosterBlockWrapper m-right-1em'>
+                        <ul className='l-gridPoster scroll-infinity__list--left2 infinity-scroll-left2 m-bottom-2em'>
                             {randomURLList3.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))
                             }
                         </ul>
-                        <ul className='l-gridPoster scroll-infinity__list--left2 infinity-scroll-left2'>
+                        <ul className='l-gridPoster scroll-infinity__list--left2 infinity-scroll-left2 m-bottom-2em'>
                             {randomURLList3.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))
@@ -61,13 +60,13 @@ export const Introduction = (props: IntroductionProps) => {
                         </ul>
                     </div>
                     <div className='girdPosterBlockWrapper'>
-                        <ul className='l-gridPoster scroll-infinity__list--right2 infinity-scroll-right2'>
+                        <ul className='l-gridPoster scroll-infinity__list--right2 infinity-scroll-right2 m-bottom-2em'>
                             {randomURLList4.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))
                             }
                         </ul>
-                        <ul className='l-gridPoster scroll-infinity__list--right2 infinity-scroll-right2'>
+                        <ul className='l-gridPoster scroll-infinity__list--right2 infinity-scroll-right2 m-bottom-2em'>
                             {randomURLList4.map((movie, index) => (
                                 <li key={index}><img className='l-topRateMovies' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} /></li>
                             ))

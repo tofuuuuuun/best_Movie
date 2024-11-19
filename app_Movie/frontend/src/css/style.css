@@ -52,7 +52,6 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    
 }
 
 .action:active{ 
@@ -89,14 +88,29 @@
 }
 
 .l-gridPosterWrapper {
+    position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: row;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    transform: rotate(25deg);
+}
+
+.l-gridPosterWrapper::after{
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 0, 0, 50%);
+    width: 832px;
+    height: 632px;
 }
 
 .l-topRateMovies{
-    width: 140px;
-    height: 210px;
+    width: 100%;
+    height: 100%;
     border-radius: 5px;
 }
 
@@ -104,11 +118,11 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    gap: 30px;
+    gap: 1em;
 }
 
 .girdPosterBlockWrapper{
-    width: 14%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -494,6 +508,8 @@ input[type=radio]{display: none;}
 }
 
 .l-movieInfo{ width: 47%; }
+
+.l-overflowHidden{ overflow: hidden; }
 
 .headerLogo { width: 58px; }
 .moviePosterList,.movieAddButton {
