@@ -14,7 +14,7 @@ type ResponseTopRatedMoviesType = {
 }
 type ResponseMoviesType = {
   id: string;
-  original_title: string;
+  title: string;
   poster_path: string;
 }
 
@@ -33,10 +33,13 @@ export const App = () => {
   const [randomURLList3, setRandomURLList3] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList4, setRandomURLList4] = useState<ResponseTopRatedMoviesType[]>([]);
 
+  const debounce = useDebounce(500);
 
   const selectStart = () => {
     setIsSelectStart(!isSelectStart);
-    setAddButtonVisible(true);
+    debounce(() => {
+      setAddButtonVisible(true);
+    })
   }
 
   const toggleModal = (toggleFlg: boolean) => {
@@ -47,8 +50,6 @@ export const App = () => {
     setMovieTitle('');
     setResponseMovies([]);
   }
-
-  const debounce = useDebounce(500);
 
   const debounceSearch = (name: string) => {
     debounce(() => {
@@ -67,7 +68,7 @@ export const App = () => {
       if (isSelected) {
         return prevList.filter((item) => item.id !== id);
       } else {
-        return [...prevList, { id: id, original_title: title, poster_path: poster }];
+        return [...prevList, { id: id, title: title, poster_path: poster }];
       }
     });
   }
@@ -89,6 +90,8 @@ export const App = () => {
   }
 
   const searchMovie = async (movieTitle: string) => {
+    setResponseMovies([]);
+
     // APIリクエスト
     const options = {
       method: 'GET',
@@ -98,7 +101,7 @@ export const App = () => {
       }
     };
 
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&page=1`, options)
+    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=japan&page=1`, options)
       .then(res =>
         res.json())
       .then(res =>
@@ -218,6 +221,7 @@ export const App = () => {
             {!isSelectStart && (
               <Introduction
                 selectStart={selectStart}
+                isSelectStart={isSelectStart}
                 topRateMovieList={topRateMovieList}
                 randomURLList1={randomURLList1}
                 randomURLList2={randomURLList2}

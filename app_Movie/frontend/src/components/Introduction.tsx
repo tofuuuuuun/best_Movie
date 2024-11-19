@@ -3,6 +3,7 @@ type ResponseTopRatedMoviesType = {
 }
 type IntroductionProps = {
     selectStart: () => void;
+    isSelectStart: boolean;
     topRateMovieList: ResponseTopRatedMoviesType[];
     randomURLList1: ResponseTopRatedMoviesType[];
     randomURLList2: ResponseTopRatedMoviesType[];
@@ -11,11 +12,11 @@ type IntroductionProps = {
 }
 
 export const Introduction = (props: IntroductionProps) => {
-    const { selectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
+    const { selectStart, isSelectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
     return (
         <>
-            <div className='startText m-bottom-3em ta-center fadeIn l-overflowHidden'>
-                <h2 className='txt-white m-bottom-05em'>BEST MOVIE</h2>
+            <div className={`l-overflowHidden startText m-bottom-3em ta-center ${isSelectStart ? 'fadeOut' : 'fadeIn'}`}>
+                <h2 className='txt-navy m-bottom-05em'>BEST MOVIE</h2>
                 <div className='l-gridPosterWrapper'>
                     <div className='girdPosterBlockWrapper m-right-1em'>
                         <ul className='l-gridPoster scroll-infinity__list--left1 infinity-scroll-left1 m-bottom-2em'>
