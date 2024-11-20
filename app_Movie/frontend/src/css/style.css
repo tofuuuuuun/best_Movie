@@ -103,9 +103,18 @@
 .l-gridPosterWrapper::after{
     content: '';
     position: absolute;
-    background-color: rgba(0, 0, 0, 50%);
+    background-color: rgba(0, 0, 0, 55%);
     width: 832px;
     height: 632px;
+}
+
+.l-introductionWrapper{
+    position: relative;
+}
+
+.l-introductionText{
+    position: absolute;
+    top: 50%;
 }
 
 .l-topRateMovies{
@@ -399,7 +408,7 @@ input[type=radio]{display: none;}
 }
 
 .modalList::-webkit-scrollbar-thumb, .autocompleteList::-webkit-scrollbar-thumb {
-    background-color: #2e303d;
+    background-color: #FFC107;
     border-radius: 10px;
 }
 
@@ -423,7 +432,7 @@ input[type=radio]{display: none;}
 }
 
 .scroll-infinity__list--left1 {
-    animation: infinity-scroll-left1 50s infinite linear 0.5s both;
+    animation: infinity-scroll-left1 80s infinite linear 0.5s both;
 }
 
 @keyframes infinity-scroll-left1{
@@ -436,7 +445,7 @@ input[type=radio]{display: none;}
 }
 
 .scroll-infinity__list--left2 {
-    animation: infinity-scroll-left2 51.3s infinite linear 0.5s both;
+    animation: infinity-scroll-left2 79s infinite linear 0.5s both;
 }
 
 @keyframes infinity-scroll-left2{
@@ -449,7 +458,7 @@ input[type=radio]{display: none;}
 }
 
 .scroll-infinity__list--right1 {
-    animation: infinity-scroll-right1 49.8s infinite linear 0.5s both;
+    animation: infinity-scroll-right1 80.5s infinite linear 0.5s both;
 }
 
 @keyframes infinity-scroll-right1{
@@ -462,7 +471,7 @@ input[type=radio]{display: none;}
 }
 
 .scroll-infinity__list--right2 {
-    animation: infinity-scroll-right2 53s infinite linear 0.5s both;
+    animation: infinity-scroll-right2 78s infinite linear 0.5s both;
 }
 
 @keyframes infinity-scroll-right2 {
@@ -478,7 +487,7 @@ input[type=radio]{display: none;}
 @media (max-width:640px) {
 .l-header{ height: auto;}
 .l-contentWrapper{
-    padding: 1em 1em 0 1em;
+    padding: 1em 0.5em 0 0.5em;
 }
 .l-addButton {
     width: 140px;
@@ -511,7 +520,23 @@ input[type=radio]{display: none;}
 
 .l-overflowHidden{ overflow: hidden; }
 
+.l-gridPosterWrapper {
+    width: 800px;
+    height: 800px;
+}
+.l-gridPosterWrapper::after{
+    width: 832px;
+    height: 832px;
+}
+
+.l-introductionText{
+    top: 39%;
+}
+
 .headerLogo { width: 58px; }
+.topText{
+    font-size: 3em;
+}
 .moviePosterList,.movieAddButton {
     grid-template-columns: repeat(auto-fill, 170px);
     justify-items: center;

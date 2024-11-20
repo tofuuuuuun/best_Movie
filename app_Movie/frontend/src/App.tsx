@@ -221,7 +221,6 @@ export const App = () => {
             {!isSelectStart && (
               <Introduction
                 selectStart={selectStart}
-                isSelectStart={isSelectStart}
                 topRateMovieList={topRateMovieList}
                 randomURLList1={randomURLList1}
                 randomURLList2={randomURLList2}

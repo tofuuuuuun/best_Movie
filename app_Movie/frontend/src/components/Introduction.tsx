@@ -3,7 +3,6 @@ type ResponseTopRatedMoviesType = {
 }
 type IntroductionProps = {
     selectStart: () => void;
-    isSelectStart: boolean;
     topRateMovieList: ResponseTopRatedMoviesType[];
     randomURLList1: ResponseTopRatedMoviesType[];
     randomURLList2: ResponseTopRatedMoviesType[];
@@ -12,11 +11,10 @@ type IntroductionProps = {
 }
 
 export const Introduction = (props: IntroductionProps) => {
-    const { selectStart, isSelectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
+    const { selectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
     return (
         <>
-            <div className={`l-overflowHidden startText m-bottom-3em ta-center ${isSelectStart ? 'fadeOut' : 'fadeIn'}`}>
-                <h2 className='txt-navy m-bottom-05em'>BEST MOVIE</h2>
+            <div className='l-introductionWrapper l-overflowHidden startText m-bottom-3em ta-center fadeIn'>
                 <div className='l-gridPosterWrapper'>
                     <div className='girdPosterBlockWrapper m-right-1em'>
                         <ul className='l-gridPoster scroll-infinity__list--left1 infinity-scroll-left1 m-bottom-2em'>
@@ -74,6 +72,9 @@ export const Introduction = (props: IntroductionProps) => {
                             }
                         </ul>
                     </div>
+                </div>
+                <div className='l-introductionText txt-white font-wb ta-left'>
+                    <p className='topText'>あなたの心に残る<br />映画、<br />10本だけ選べますか？</p>
                 </div>
             </div >
             <div className='ta-center'>
