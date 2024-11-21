@@ -114,7 +114,8 @@
 
 .l-introductionText{
     position: absolute;
-    top: 50%;
+    top: 20%;
+    left: 6%;
 }
 
 .l-topRateMovies{
@@ -192,7 +193,7 @@
     width: 110px;
     max-width: 100%;
 }
-
+.topText{ font-size: 60px; }
 .startButton{
     padding: 12px 24px;
     border: none;
