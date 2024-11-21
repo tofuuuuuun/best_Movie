@@ -36,10 +36,10 @@ export const App = () => {
   const debounce = useDebounce(500);
 
   const selectStart = () => {
+    const element = document.querySelector('#introduction') as HTMLElement;
+    element.classList.add('fadeOut');
     setIsSelectStart(!isSelectStart);
-    debounce(() => {
-      setAddButtonVisible(true);
-    })
+    setAddButtonVisible(true);
   }
 
   const toggleModal = (toggleFlg: boolean) => {
