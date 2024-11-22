@@ -35,6 +35,7 @@ export const Modal = (props: ModalProps) => {
                         clearModal={clearModal}
                         searchMovie={searchMovie}
                     />
+                    <div className='txt-white'><p>あと{10 - moviePosterList.length}枚選ぼう</p></div>
                     <ErrorMessage errorMessage={errorMessage} />
                     {responseMovies.length !== 0 && (
                         <div className='m-top-1em'>

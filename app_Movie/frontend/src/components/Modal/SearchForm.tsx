@@ -10,7 +10,7 @@ type SearchFormProps = {
 export const SearchForm = (props: SearchFormProps) => {
     const { movieTitle, inputMovieTitle, clearModal, searchMovie } = props;
     return (
-        <div className='l-searchForm ta-left'>
+        <div className='l-searchForm ta-left m-bottom-05em'>
             <div className='l-selectType'>
                 <input type='text' name='movie' id='movieTitle' placeholder='映画タイトルを入力してください' value={movieTitle} onChange={inputMovieTitle} />
                 <div className='clear' onClick={() => clearModal()}><span className='icon-close'></span></div>
