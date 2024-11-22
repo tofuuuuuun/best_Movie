@@ -6,10 +6,13 @@ type AddButtonProps = {
 export const AddButton = (props: AddButtonProps) => {
     const { setModalIsOpen, isModalOpen } = props;
     return (
-        <div className='movieAddButton fadeIn'>
-            <button className='l-movieAddPoster movieAddButton addButton action' onClick={() => setModalIsOpen(!isModalOpen)}>
-                <span className='icon-add'></span>
-            </button>
-        </div>
+        <>
+            <div><p className='textXL1 txt-white font-wb ta-center'>10作品選ぼう！</p></div>
+            <div className='movieAddButton fadeIn'>
+                <button className='l-movieAddPoster movieAddButton addButton action' onClick={() => setModalIsOpen(!isModalOpen)}>
+                    <span className='icon-add'></span>
+                </button>
+            </div>
+        </>
     )
 }

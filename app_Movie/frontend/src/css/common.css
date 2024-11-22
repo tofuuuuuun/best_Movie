@@ -55,6 +55,10 @@ input[type="checkbox"]{display: none;}
 .ta-center { text-align: center; }
 .ta-right { text-align: right; }
 
+.textM1{font-size: 1em;}
+.textL1{font-size: 1.5em;}
+.textXL1{font-size: 2em;}
+
 .txt-white { color: #FAFAFA; }
 .txt-navy {color: #24272F;}
 .txt-orange {color: #ff693a;}
