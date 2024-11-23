@@ -49,6 +49,7 @@ export const App = () => {
   const clearModal = () => {
     setMovieTitle('');
     setResponseMovies([]);
+    setMoviePosterList([]);
   }
 
   const debounceSearch = (name: string) => {

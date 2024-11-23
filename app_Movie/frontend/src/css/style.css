@@ -114,8 +114,14 @@
 
 .l-introductionText{
     position: absolute;
-    top: 20%;
-    left: 6%;
+    top: 10%;
+    left: 1%;
+}
+
+.l-startButtonWrapper{
+    position: absolute;
+    bottom: 45%;
+    left: calc(50% - 55px);
 }
 
 .l-topRateMovies{
@@ -195,6 +201,7 @@
 }
 .topText{ font-size: 60px; }
 .startButton{
+    width: 115px;
     padding: 12px 24px;
     border: none;
     border-radius: 10px;
@@ -531,7 +538,7 @@ input[type=radio]{display: none;}
 }
 
 .l-introductionText{
-    top: 39%;
+    top: 15%;
 }
 
 .headerLogo { width: 58px; }
