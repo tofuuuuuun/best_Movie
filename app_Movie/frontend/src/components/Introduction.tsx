@@ -13,7 +13,7 @@ export const Introduction = (props: IntroductionProps) => {
     const { selectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;
     return (
         <>
-            <div id='introduction' className='l-introductionWrapper l-overflowHidden startText m-bottom-3em ta-center fadeIn'>
+            <div id='introduction' className='l-introductionWrapper l-overflowHidden startText ta-center fadeIn'>
                 <div className='l-gridPosterWrapper'>
                     <div className='girdPosterBlockWrapper m-right-1em'>
                         <ul className='l-gridPoster scroll-infinity__list--left1 infinity-scroll-left1 m-bottom-2em'>

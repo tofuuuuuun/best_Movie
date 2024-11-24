@@ -529,8 +529,8 @@ input[type=radio]{display: none;}
 .l-overflowHidden{ overflow: hidden; }
 
 .l-gridPosterWrapper {
-    width: 800px;
-    height: 800px;
+    width: 715px;
+    height: 715px;
 }
 .l-gridPosterWrapper::after{
     width: 832px;
