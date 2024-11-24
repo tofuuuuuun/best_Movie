@@ -3,7 +3,6 @@ type ResponseTopRatedMoviesType = {
 }
 type IntroductionProps = {
     selectStart: () => void;
-    topRateMovieList: ResponseTopRatedMoviesType[];
     randomURLList1: ResponseTopRatedMoviesType[];
     randomURLList2: ResponseTopRatedMoviesType[];
     randomURLList3: ResponseTopRatedMoviesType[];

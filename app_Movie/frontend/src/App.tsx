@@ -27,7 +27,6 @@ export const App = () => {
   const [moviePosterList, setMoviePosterList] = useState<ResponseMoviesType[]>([]);
   const [resetButtonVisible, setResetButtonVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [topRateMovieList, setTopRateMovieList] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList1, setRandomURLList1] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList2, setRandomURLList2] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList3, setRandomURLList3] = useState<ResponseTopRatedMoviesType[]>([]);
@@ -59,6 +58,11 @@ export const App = () => {
   };
 
   const inputMovieTitle = (event: { target: { value: string } }) => {
+    const value = event.target.value;
+    if (value.trim() === '') {
+      setErrorMessage('映画のタイトルを入力してください。');
+      return;
+    }
     setMovieTitle(event.target.value);
     debounceSearch(event.target.value);
   }
@@ -101,17 +105,19 @@ export const App = () => {
         Authorization: TOKEN
       }
     };
-
-    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=japan&page=1`, options)
-      .then(res =>
-        res.json())
-      .then(res =>
-        setResponseMovies([...responseMovies, ...res["results"]]))
-      .catch(err =>
-        setErrorMessage(err.message));
+    try {
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=japan&page=1`, options);
+      if (!response.ok) {
+        throw new Error('ネットワークエラーが発生しました。');
+      }
+      const data = await response.json();
+      setResponseMovies([...responseMovies, ...data["results"]]);
+    } catch {
+      setErrorMessage('映画の検索中にエラーが発生しました。もう一度お試しください。');
+    }
   };
 
-  const getTopRatedMovies = () => {
+  const getTopRatedMovies = async () => {
     const totalPages = [1, 2, 3, 4, 5];
     const options = {
       method: 'GET',
@@ -120,46 +126,50 @@ export const App = () => {
         Authorization: TOKEN
       }
     };
-
-    Promise.all(
-      totalPages.map(page =>
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
-          .then(res => res.json())
+    try {
+      Promise.all(
+        totalPages.map(page =>
+          fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
+            .then(res => res.json())
+        )
       )
-    )
-      .then(responses => {
-        const allResults = responses.flatMap(res => res.results);
-        setTopRateMovieList((prev) => ([...prev, ...allResults]));
+        .then(responses => {
+          const allResults = responses.flatMap(res => res.results);
 
-        const randomURLs1 = [];
-        for (let i = 1; i <= 10; i++) {
-          const randomIndex = Math.floor(Math.random() * allResults.length);
-          randomURLs1.push(allResults[randomIndex]);
-        }
-        setRandomURLList1(randomURLs1);
+          const randomURLs1 = [];
+          for (let i = 1; i <= 10; i++) {
+            const randomIndex = Math.floor(Math.random() * allResults.length);
+            randomURLs1.push(allResults[randomIndex]);
+          }
+          setRandomURLList1(randomURLs1);
 
-        const randomURLs2 = [];
-        for (let i = 1; i <= 10; i++) {
-          const randomIndex = Math.floor(Math.random() * allResults.length);
-          randomURLs2.push(allResults[randomIndex]);
-        }
-        setRandomURLList2(randomURLs2);
+          const randomURLs2 = [];
+          for (let i = 1; i <= 10; i++) {
+            const randomIndex = Math.floor(Math.random() * allResults.length);
+            randomURLs2.push(allResults[randomIndex]);
+          }
+          setRandomURLList2(randomURLs2);
 
-        const randomURLs3 = [];
-        for (let i = 1; i <= 10; i++) {
-          const randomIndex = Math.floor(Math.random() * allResults.length);
-          randomURLs3.push(allResults[randomIndex]);
-        }
-        setRandomURLList3(randomURLs3);
+          const randomURLs3 = [];
+          for (let i = 1; i <= 10; i++) {
+            const randomIndex = Math.floor(Math.random() * allResults.length);
+            randomURLs3.push(allResults[randomIndex]);
+          }
+          setRandomURLList3(randomURLs3);
 
-        const randomURLs4 = [];
-        for (let i = 1; i <= 10; i++) {
-          const randomIndex = Math.floor(Math.random() * allResults.length);
-          randomURLs4.push(allResults[randomIndex]);
-        }
-        setRandomURLList4(randomURLs4);
-      })
-      .catch(err => setErrorMessage(err.message));
+          const randomURLs4 = [];
+          for (let i = 1; i <= 10; i++) {
+            const randomIndex = Math.floor(Math.random() * allResults.length);
+            randomURLs4.push(allResults[randomIndex]);
+          }
+          setRandomURLList4(randomURLs4);
+        })
+        .catch(err => setErrorMessage(err.message));
+    } catch {
+      console.log('error');
+      alert('エラーが発生しました。リロードし直してください。')
+    }
+
   }
 
 
@@ -222,7 +232,6 @@ export const App = () => {
             {!isSelectStart && (
               <Introduction
                 selectStart={selectStart}
-                topRateMovieList={topRateMovieList}
                 randomURLList1={randomURLList1}
                 randomURLList2={randomURLList2}
                 randomURLList3={randomURLList3}
