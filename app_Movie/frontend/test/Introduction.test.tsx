@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Introduction } from '../src/components/Introduction';
 import '@testing-library/jest-dom';
@@ -24,5 +24,7 @@ describe('Introduction Component', () => {
 
 		const buttonElement = screen.getByText(/映画を選ぶ/i);
 		expect(buttonElement).toBeInTheDocument();
+		fireEvent.click(buttonElement);
+		expect(mockSelectStart).toHaveBeenCalledTimes(1);
 	});
 });

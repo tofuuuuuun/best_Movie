@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Modal } from '../src/components/Modal/Modal.tsx';
 import '@testing-library/jest-dom';
@@ -10,7 +10,7 @@ type MovieType = {
 }
 
 describe('AddButton Component', () => {
-    it('renders start button', () => {
+    it('renders start button', async () => {
         const mockToggleModal = vi.fn();
         const mockSearchMovie = vi.fn();
         const mockInputMovieTitle = vi.fn();
@@ -37,6 +37,7 @@ describe('AddButton Component', () => {
             />
         );
 
+        // 入力フォームとテキストが表示されているか
         const buttonElement = screen.getByRole('button');
         const inputElement = screen.getByRole('textbox');
         const modalTextElement = screen.getByText('あと10枚選ぼう');
@@ -44,5 +45,11 @@ describe('AddButton Component', () => {
         expect(buttonElement).toBeInTheDocument();
         expect(inputElement).toBeInTheDocument();
         expect(modalTextElement).toBeInTheDocument();
+
+        // 入力フォームに値を入力して検索ボタンが押せるか
+        fireEvent.change(inputElement, { target: { value: 'アベンジャーズ' } })
+        const searchButton = screen.getByRole('button', { name: /search/i });
+        fireEvent.click(searchButton);
+        expect(mockSearchMovie).toHaveBeenCalled();
     });
 });
