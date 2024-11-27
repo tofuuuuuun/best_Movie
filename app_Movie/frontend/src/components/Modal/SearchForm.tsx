@@ -16,7 +16,7 @@ export const SearchForm = (props: SearchFormProps) => {
                 <div className='clear' onClick={() => clearModal()}><span className='icon-close'></span></div>
             </div>
             <div className='p-left-1em'>
-                <button className='l-buttonSearch txt-navy bg-yellow search action' onClick={() => searchMovie(movieTitle)}>
+                <button className='l-buttonSearch txt-navy bg-yellow search action' name='search' onClick={() => searchMovie(movieTitle)}>
                     <img src={searchIcon} alt='searchIcon' width='15' />
                 </button>
             </div>

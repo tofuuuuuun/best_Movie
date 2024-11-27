@@ -73,7 +73,7 @@ export const Introduction = (props: IntroductionProps) => {
                     </div>
                 </div>
                 <div className='l-introductionText txt-white font-wb ta-left'>
-                    <p className='topText'>あなたの心に残る<br />映画、<br />10本だけ選べますか？</p>
+                    <p className='topText'>あなたの心に残る<br />映画、<br />10作品だけ選べますか？</p>
                 </div>
             </div >
             <div className='l-startButtonWrapper ta-center'>
