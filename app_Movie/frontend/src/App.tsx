@@ -32,7 +32,7 @@ export const App = () => {
   const [randomURLList3, setRandomURLList3] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList4, setRandomURLList4] = useState<ResponseTopRatedMoviesType[]>([]);
 
-  const debounce = useDebounce(500);
+  const debounce = useDebounce(1000);
 
   const selectStart = () => {
     const element = document.querySelector('#introduction') as HTMLElement;
@@ -61,10 +61,9 @@ export const App = () => {
     const value = event.target.value;
     if (value.trim() === '') {
       setErrorMessage('映画のタイトルを入力してください。');
-      return;
     }
-    setMovieTitle(event.target.value);
-    debounceSearch(event.target.value);
+    setMovieTitle(value);
+    debounceSearch(value);
   }
 
   const toggleAlbum = (id: string, title: string, poster: string) => {
@@ -96,7 +95,7 @@ export const App = () => {
 
   const searchMovie = async (movieTitle: string) => {
     setResponseMovies([]);
-
+    setErrorMessage('');
     // APIリクエスト
     const options = {
       method: 'GET',
