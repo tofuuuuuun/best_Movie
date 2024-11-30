@@ -88,15 +88,15 @@
 }
 
 .l-gridPosterWrapper {
-    position: relative;
     display: flex;
     justify-content: space-around;
     flex-direction: row;
     width: 600px;
     height: 600px;
+    position: relative;
+    left: 25%;
     border-radius: 50%;
     overflow: hidden;
-    margin: 0 auto;
     transform: rotate(25deg);
 }
 
@@ -114,8 +114,8 @@
 
 .l-introductionText{
     position: absolute;
-    top: 10%;
-    left: 1%;
+    top: 25%;
+    left: 25%;
 }
 
 .l-startButtonWrapper{
@@ -531,6 +531,7 @@ input[type=radio]{display: none;}
 .l-gridPosterWrapper {
     width: 715px;
     height: 715px;
+    left: 0;
 }
 .l-gridPosterWrapper::after{
     width: 832px;
@@ -539,6 +540,7 @@ input[type=radio]{display: none;}
 
 .l-introductionText{
     top: 15%;
+    left: 3%;
 }
 
 .headerLogo { width: 58px; }
