@@ -1,11 +1,11 @@
-import logoIcon from '../../public/images/logo.png';
+import logoIcon from '../../public/images/logo.svg';
 export const Header = () => {
     return (
         <>
             <header>
-                <div className="l-header ta-center">
-                    <h1><img src={logoIcon} alt="タイトル" className="headerLogo" /></h1>
-                </div>
+                <h1 className="l-header">
+                    <img src={logoIcon} alt="BEST" className="headerLogo" />
+                </h1>
             </header>
         </>
     );

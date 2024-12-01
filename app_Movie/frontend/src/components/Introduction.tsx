@@ -73,13 +73,13 @@ export const Introduction = (props: IntroductionProps) => {
                     </div>
                 </div>
                 <div className='l-introductionText txt-white font-wb ta-left'>
-                    <p className='topText'>あなたの心に残る<br />映画、<br />10作品だけ選べますか？</p>
+                    <p className='topText m-bottom-1em'>あなたの心に残る<br />映画、<br />10作品だけ選べますか？</p>
+                    <div className='l-startButtonWrapper ta-center'>
+                        <button className='startButton bg-purple txt-white font-wb' onClick={() => selectStart()}>映画を選ぶ
+                        </button>
+                    </div>
                 </div>
             </div >
-            <div className='l-startButtonWrapper ta-center'>
-                <button className='startButton bg-yellow txt-navy font-wb' onClick={() => selectStart()}>映画を選ぶ
-                </button>
-            </div>
         </>
     )
 }

@@ -1,7 +1,7 @@
 html { font-size: 16px; font-family: "Noto Sans JP", sans-serif; font-style: normal; }
 body { margin: 0; background-color: #24272F; }
-header { position: absolute; top: 0; width: 100%; text-align: left;}
-main { width: 1200px; max-width: 100%; margin: 0 auto; padding: 10em 0;}
+header { position: absolute; top: 0; width: 100%; text-align: left; z-index: 1; background-color: #1a1c21; }
+main { width: 1200px; max-width: 100%; margin: 0 auto;}
 h1{ margin-block-start: 0; margin-block-end: 0; }
 ul { margin-block-start: 0; margin-block-end: 0; padding-left: 0; }
 li { list-style: none; }
@@ -59,18 +59,18 @@ input[type="checkbox"]{display: none;}
 .textL1{font-size: 1.5em;}
 .textXL1{font-size: 2em;}
 
-.txt-white { color: #FAFAFA; }
+.txt-white { color: #e9f1f8; }
 .txt-navy {color: #24272F;}
 .txt-orange {color: #ff693a;}
 
-.bg-yellow { background-color: #FFC107; }
-.bg-yellow:hover{background-color: #FFC107;}
+.bg-purple { background-color: #663399; }
+.bg-purple:hover{background-color: #572c82;}
 
-.bg-white { background-color: #F1F8E9; }
-.bg-white:hover{ background-color: #d6dccf; }
+.bg-white { background-color: #e9f1f8; }
+.bg-white:hover{ background-color: #e9f1f8; }
 
-.bg-gray { background-color: #ced3c8; }
-.bg-gray:hover{ background-color: #d6dccf; }
+.bg-gray { background-color: #cdc8d3; }
+.bg-gray:hover{ background-color: #bfbac5; }
 
 .errorMessage{color: #ff0000;}
 
