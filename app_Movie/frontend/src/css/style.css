@@ -4,8 +4,15 @@
 }
 
 .l-header{
-    height: 100px;
-    padding: 1em 1em 0.5em 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    padding: 0.5em 1em;
+}
+
+.l-addButtonWrapper{
+    padding-top: 8em;
 }
 
 .l-addButton {
@@ -31,7 +38,7 @@
 }
 
 .l-moviePoster::after{
-    background-color: #f05d31;
+    background-color: #663399;
     z-index: 100;
 }
 
@@ -91,21 +98,18 @@
     display: flex;
     justify-content: space-around;
     flex-direction: row;
-    width: 600px;
-    height: 600px;
+    width: 100%;
+    height: 100vh;
     position: relative;
-    left: 25%;
-    border-radius: 50%;
     overflow: hidden;
-    transform: rotate(25deg);
 }
 
 .l-gridPosterWrapper::after{
     content: '';
     position: absolute;
-    background-color: rgba(0, 0, 0, 55%);
-    width: 832px;
-    height: 632px;
+    background-color: rgba(0, 0, 0, 60%);
+    width: 100%;
+    height: 100vh;
 }
 
 .l-introductionWrapper{
@@ -115,13 +119,7 @@
 .l-introductionText{
     position: absolute;
     top: 25%;
-    left: 25%;
-}
-
-.l-startButtonWrapper{
-    position: absolute;
-    bottom: 45%;
-    left: calc(50% - 55px);
+    left: 15%;
 }
 
 .l-topRateMovies{
@@ -144,10 +142,14 @@
     overflow: hidden;
 }
 
+.clear .icon-close{
+    color: #626669;
+}
+
 .icon-close {
     display: inline-block;
     vertical-align: middle;
-    color: #333;
+    color: #e9f1f8;
     line-height: 1;
     width: 1em;
     height: 0.1em;
@@ -172,7 +174,7 @@
 .icon-add {
     display: inline-block;
     vertical-align: middle;
-    color: #24272F;
+    color: #babfc4;
     line-height: 1;
     width: 1.1em;
     height: 0.2em;
@@ -196,7 +198,7 @@
 }
 
 .headerLogo{
-    width: 110px;
+    width: 170px;
     max-width: 100%;
 }
 .topText{ font-size: 60px; }
@@ -228,14 +230,14 @@
     border-radius: 5px;
     border: none;
     box-shadow: 2px 2px 15px 1px #1a1a1a;
-    background-color: #FFC107;
+    background-color: #663399;
     cursor: pointer;
 }
 
 .addButton:hover {
     box-shadow: none;
     transition-duration: 0.2s;
-    background-color: #d3dacb;
+    background-color: #572c82;
     transform: scale(0.99,0.99) translateY(2px);
 }
 
@@ -243,6 +245,7 @@
 
 .modal-container {
     position: fixed;
+    z-index: 3;
     top: 0;
     left: 0;
     width: 100%;
@@ -252,6 +255,7 @@
     background: rgba(0, 0, 0, 50%);
     padding: 40px 20px;
     overflow: auto;
+    
     transition: .3s;
     box-sizing: border-box;
 }
@@ -281,8 +285,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 6%;
-    right: 31%;
+    top: 3%;
+    right: 14%;
     width: 40px;
     height: 40px;
     font-size: 40px;
@@ -416,7 +420,7 @@ input[type=radio]{display: none;}
 }
 
 .modalList::-webkit-scrollbar-thumb, .autocompleteList::-webkit-scrollbar-thumb {
-    background-color: #FFC107;
+    background-color: #663399;
     border-radius: 10px;
 }
 
@@ -532,6 +536,10 @@ input[type=radio]{display: none;}
     width: 715px;
     height: 715px;
     left: 0;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: rotate(25deg);
 }
 .l-gridPosterWrapper::after{
     width: 832px;
@@ -543,7 +551,12 @@ input[type=radio]{display: none;}
     left: 3%;
 }
 
-.headerLogo { width: 58px; }
+.l-addButtonWrapper{
+    padding-top: 0;
+}
+
+
+.headerLogo { width: 120px; }
 .topText{
     font-size: 3em;
 }

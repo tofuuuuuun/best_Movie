@@ -5,7 +5,6 @@ import { Introduction } from './components/Introduction.tsx';
 import { AddButton } from './components/AddButton.tsx';
 import { MoviePosterList } from './components/MoviePosterList.tsx';
 import { ResetArea } from './components/ResetArea.tsx';
-import { useDebounce } from './components/debounce.tsx';
 import { TOKEN } from './Constants.tsx';
 import html2canvas from 'html2canvas';
 
@@ -32,8 +31,6 @@ export const App = () => {
   const [randomURLList3, setRandomURLList3] = useState<ResponseTopRatedMoviesType[]>([]);
   const [randomURLList4, setRandomURLList4] = useState<ResponseTopRatedMoviesType[]>([]);
 
-  const debounce = useDebounce(1000);
-
   const selectStart = () => {
     const element = document.querySelector('#introduction') as HTMLElement;
     element.classList.add('fadeOut');
@@ -48,22 +45,11 @@ export const App = () => {
   const clearModal = () => {
     setMovieTitle('');
     setResponseMovies([]);
-    setMoviePosterList([]);
   }
-
-  const debounceSearch = (name: string) => {
-    debounce(() => {
-      searchMovie(name);
-    })
-  };
 
   const inputMovieTitle = (event: { target: { value: string } }) => {
     const value = event.target.value;
-    if (value.trim() === '') {
-      setErrorMessage('映画のタイトルを入力してください。');
-    }
     setMovieTitle(value);
-    debounceSearch(value);
   }
 
   const toggleAlbum = (id: string, title: string, poster: string) => {
@@ -89,6 +75,7 @@ export const App = () => {
 
   const resetMoviePosterList = () => {
     clearModal();
+    setMoviePosterList([]);
     setAddButtonVisible(true);
     setResetButtonVisible(false);
   }
@@ -105,7 +92,7 @@ export const App = () => {
       }
     };
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=japan&page=1`, options);
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=JA&page=1`, options);
       if (!response.ok) {
         throw new Error('ネットワークエラーが発生しました。');
       }
@@ -128,7 +115,7 @@ export const App = () => {
     try {
       Promise.all(
         totalPages.map(page =>
-          fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=japan`, options)
+          fetch(`https://api.themoviedb.org/3/movie/top_rated?language=ja-JA&page=${page}&region=JA`, options)
             .then(res => res.json())
         )
       )
@@ -168,7 +155,6 @@ export const App = () => {
       console.log('error');
       alert('エラーが発生しました。リロードし直してください。')
     }
-
   }
 
 
