@@ -1,13 +1,4 @@
-type ResponseTopRatedMoviesType = {
-    poster_path: string;
-}
-type IntroductionProps = {
-    selectStart: () => void;
-    randomURLList1: ResponseTopRatedMoviesType[];
-    randomURLList2: ResponseTopRatedMoviesType[];
-    randomURLList3: ResponseTopRatedMoviesType[];
-    randomURLList4: ResponseTopRatedMoviesType[];
-}
+import { IntroductionProps } from '../../public/types';
 
 export const Introduction = (props: IntroductionProps) => {
     const { selectStart, randomURLList1, randomURLList2, randomURLList3, randomURLList4 } = props;

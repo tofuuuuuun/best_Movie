@@ -1,10 +1,7 @@
 import rotateIcon from '../../public/images/rotate.png';
 import cameraIcon from '../../public/images/camera.png';
+import { ResetAreaProps } from '../../public/types';
 
-type ResetAreaProps = {
-    resetMoviePosterList: () => void;
-    handleCapture: () => void;
-}
 
 export const ResetArea = (props: ResetAreaProps) => {
     const { resetMoviePosterList, handleCapture } = props;

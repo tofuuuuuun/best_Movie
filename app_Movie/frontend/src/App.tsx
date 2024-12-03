@@ -7,15 +7,7 @@ import { MoviePosterList } from './components/MoviePosterList.tsx';
 import { ResetArea } from './components/ResetArea.tsx';
 import { TOKEN } from './Constants.tsx';
 import html2canvas from 'html2canvas';
-
-type ResponseTopRatedMoviesType = {
-  poster_path: string;
-}
-type ResponseMoviesType = {
-  id: string;
-  title: string;
-  poster_path: string;
-}
+import { ResponseMoviesType, ResponseTopRatedMoviesType } from '../public/types';
 
 export const App = () => {
   const [isSelectStart, setIsSelectStart] = useState<boolean>(false);

@@ -1,12 +1,4 @@
-type Movie = {
-    id: string;
-    title: string;
-    poster_path: string;
-}
-type MoviePosterListProps = {
-    moviePosterList: Movie[];
-    deleteAlbum: (id: string) => void;
-}
+import { MoviePosterListProps } from '../../public/types';
 
 export const MoviePosterList = (props: MoviePosterListProps) => {
     const { moviePosterList, deleteAlbum } = props;

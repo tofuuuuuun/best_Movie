@@ -1,16 +1,6 @@
 import { ResultCheckboxButton } from './ResultCheckButton';
+import { ResponseMoviesProps } from '../../../public/types';
 
-type MovieType = {
-    id: string;
-    title: string;
-    poster_path: string;
-}
-
-type ResponseMoviesProps = {
-    toggleAlbum: (id: string, title: string, poster: string) => void;
-    responseMovies: MovieType[];
-    moviePosterList: { id: string, title: string, poster_path: string }[];
-}
 
 export const ResponseMovies = (props: ResponseMoviesProps) => {
     const { toggleAlbum, responseMovies, moviePosterList } = props;

@@ -1,11 +1,6 @@
 import searchIcon from '../../../public/images/search.png';
+import { SearchFormProps } from '../../../public/types';
 
-type SearchFormProps = {
-    movieTitle: string;
-    inputMovieTitle: (event: { target: { value: string } }) => void;
-    clearModal: () => void;
-    searchMovie: (title: string) => void;
-}
 
 export const SearchForm = (props: SearchFormProps) => {
     const { movieTitle, inputMovieTitle, clearModal, searchMovie } = props;
