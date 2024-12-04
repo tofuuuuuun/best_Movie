@@ -1,7 +1,8 @@
-import { SearchForm } from './SearchForm'
+import { SearchForm } from '../Form/SearchForm'
 import { ErrorMessage } from '../../error/ErrorMessage';
 import { ResponseMovies } from './ResponseMovies';
 import { ModalProps } from '../../../public/types';
+import { LoginForm } from '../Form/LoginForm';
 
 export const Modal = (props: ModalProps) => {
     const { toggleModal, searchMovie, movieTitle, inputMovieTitle, responseMovies, clearModal, moviePosterList, toggleAlbum, errorMessage } = props;
@@ -17,6 +18,7 @@ export const Modal = (props: ModalProps) => {
                         clearModal={clearModal}
                         searchMovie={searchMovie}
                     />
+                    <LoginForm />
                     <div className='txt-white'><p>あと{10 - moviePosterList.length}枚選ぼう</p></div>
                     <ErrorMessage errorMessage={errorMessage} />
                     {responseMovies.length !== 0 && (
