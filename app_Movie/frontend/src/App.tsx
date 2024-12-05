@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { Modal } from './components/Modal/Modal.tsx';
 import { Header } from './common/Header.tsx';
 import { Introduction } from './components/Introduction.tsx';
@@ -95,7 +95,7 @@ export const App = () => {
     }
   };
 
-  const getTopRatedMovies = async () => {
+  const getTopRatedMovies = useCallback(async () => {
     const totalPages = [1, 2, 3, 4, 5];
     const options = {
       method: 'GET',
@@ -114,40 +114,25 @@ export const App = () => {
         .then(responses => {
           const allResults = responses.flatMap(res => res.results);
 
-          const randomURLs1 = [];
-          for (let i = 1; i <= 10; i++) {
-            const randomIndex = Math.floor(Math.random() * allResults.length);
-            randomURLs1.push(allResults[randomIndex]);
-          }
-          setRandomURLList1(randomURLs1);
-
-          const randomURLs2 = [];
-          for (let i = 1; i <= 10; i++) {
-            const randomIndex = Math.floor(Math.random() * allResults.length);
-            randomURLs2.push(allResults[randomIndex]);
-          }
-          setRandomURLList2(randomURLs2);
-
-          const randomURLs3 = [];
-          for (let i = 1; i <= 10; i++) {
-            const randomIndex = Math.floor(Math.random() * allResults.length);
-            randomURLs3.push(allResults[randomIndex]);
-          }
-          setRandomURLList3(randomURLs3);
-
-          const randomURLs4 = [];
-          for (let i = 1; i <= 10; i++) {
-            const randomIndex = Math.floor(Math.random() * allResults.length);
-            randomURLs4.push(allResults[randomIndex]);
-          }
-          setRandomURLList4(randomURLs4);
+          const getRandomMovies = (count: number) => {
+            const randomMovies = [];
+            for (let i = 0; i < count; i++) {
+              const randomIndex = Math.floor(Math.random() * allResults.length);
+              randomMovies.push(allResults[randomIndex]);
+            }
+            return randomMovies;
+          };
+          setRandomURLList1(getRandomMovies(10));
+          setRandomURLList2(getRandomMovies(10));
+          setRandomURLList3(getRandomMovies(10));
+          setRandomURLList4(getRandomMovies(10));
         })
         .catch(err => setErrorMessage(err.message));
     } catch {
       console.log('error');
       alert('エラーが発生しました。リロードし直してください。')
     }
-  }
+  }, []);
 
 
   // html2canvasを使用してキャプチャーを取得し、共有する
@@ -198,7 +183,7 @@ export const App = () => {
       setModalIsOpen(false);
     }
     getTopRatedMovies()
-  }, [moviePosterList]);
+  }, [moviePosterList, getTopRatedMovies]);
 
   return (
     <>
