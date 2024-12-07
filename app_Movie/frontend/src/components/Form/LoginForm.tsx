@@ -1,4 +1,7 @@
 export const LoginForm = () => {
+    const test = () => {
+        console.log('test');
+    }
     return (
         <div className='l-loginForm'>
             <form>
@@ -10,9 +13,8 @@ export const LoginForm = () => {
                     <label htmlFor='password'>パスワード: </label>
                     <input type='password' id='password' name='password' />
                 </div>
-                <button type='submit'>ログイン</button>
+                <button type='submit' onClick={test}>ログイン</button>
             </form>
-            <div><a href='#'>アカウントの作成</a></div>
         </div>
     )
 }
