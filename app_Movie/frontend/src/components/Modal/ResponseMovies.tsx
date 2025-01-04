@@ -1,14 +1,14 @@
 import { ResultCheckboxButton } from './ResultCheckButton';
 import { ResponseMoviesProps } from '../../../public/types';
 
-
 export const ResponseMovies = (props: ResponseMoviesProps) => {
     const { toggleAlbum, responseMovies, moviePosterList } = props;
+    const BASE_URL = 'https://image.tmdb.org/t/p/w500/';
     return (
         <ul className='modalList'>
             {responseMovies.map((movie, index) => (
-                <li className='movieItems' id={index === 0 ? 'firstItems' : ''} key={index} >
-                    <img className='moviePoster' src={`https://image.tmdb.org/t/p/w500/${movie.poster_path ?? ''}`} loading='lazy' />
+                <li className={`movieItems ${index === 0 ? 'first-item' : ''}`} key={index} >
+                    <img className='moviePoster' src={`${BASE_URL}${movie.poster_path ?? ''}`} loading='lazy' />
                     <div className='l-movieInfo'>
                         <span className='movieTitle font-wb'>{movie.title}</span>
                     </div>

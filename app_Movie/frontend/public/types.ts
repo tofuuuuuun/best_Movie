@@ -1,3 +1,4 @@
+// Introduction
 export type ResponseTopRatedMoviesType = {
     poster_path: string;
 }
@@ -15,12 +16,13 @@ export type IntroductionProps = {
     randomURLList4: ResponseTopRatedMoviesType[];
 }
 
+// ResetArea
 export type ResetAreaProps = {
     resetMoviePosterList: () => void;
     handleCapture: () => void;
 }
 
-
+// Modal
 export type MovieType = {
     id: string;
     title: string;
@@ -31,7 +33,7 @@ export type ModalProps = {
     toggleModal: (toggle: boolean) => void;
     searchMovie: (artistName: string) => void;
     movieTitle: string;
-    inputMovieTitle: (event: { target: { value: string } }) => void;
+    inputMovieTitle: (event: React.ChangeEvent<HTMLInputElement>) => void;
     responseMovies: MovieType[];
     clearModal: () => void;
     deleteAlbum: (id: string) => void;
@@ -40,10 +42,10 @@ export type ModalProps = {
     errorMessage: string;
 }
 
-
+// SearchForm
 export type SearchFormProps = {
     movieTitle: string;
-    inputMovieTitle: (event: { target: { value: string } }) => void;
+    inputMovieTitle: (event: React.ChangeEvent<HTMLInputElement>) => void;
     clearModal: () => void;
     searchMovie: (title: string) => void;
 }

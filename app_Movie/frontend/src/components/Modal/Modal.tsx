@@ -2,15 +2,15 @@ import { SearchForm } from '../Form/SearchForm'
 import { ErrorMessage } from '../../error/ErrorMessage';
 import { ResponseMovies } from './ResponseMovies';
 import { ModalProps } from '../../../public/types';
-import { LoginForm } from '../Form/LoginForm';
 
 export const Modal = (props: ModalProps) => {
     const { toggleModal, searchMovie, movieTitle, inputMovieTitle, responseMovies, clearModal, moviePosterList, toggleAlbum, errorMessage } = props;
-    const changeFlg = () => toggleModal(false);
+    const closeModal = () => toggleModal(false);
+    const MAX_ALBUM = 10;
     return (
         <div className='modal-container'>
             <div className='modal-body'>
-                <div className='modal-close' onClick={changeFlg}><span className='icon-close'></span></div>
+                <div className='modal-close' onClick={closeModal}><span className='icon-close'></span></div>
                 <div className='modal-content'>
                     <SearchForm
                         movieTitle={movieTitle}
@@ -18,8 +18,7 @@ export const Modal = (props: ModalProps) => {
                         clearModal={clearModal}
                         searchMovie={searchMovie}
                     />
-                    <LoginForm />
-                    <div className='txt-white'><p>あと{10 - moviePosterList.length}枚選ぼう</p></div>
+                    <div className='txt-white'><p>あと{MAX_ALBUM - moviePosterList.length}枚選ぼう</p></div>
                     <ErrorMessage errorMessage={errorMessage} />
                     {responseMovies.length !== 0 && (
                         <div className='m-top-1em'>
