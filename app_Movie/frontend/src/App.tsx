@@ -9,6 +9,9 @@ import { TOKEN } from './Constants.tsx';
 import html2canvas from 'html2canvas';
 import { ResponseMoviesType, ResponseTopRatedMoviesType } from '../public/types';
 
+const INTRODUCTION_SELECTOR = '#introduction';
+const L_ALBUMLIST_SELECTOR = '.l-albumList';
+
 export const App = () => {
   const [isSelectStart, setIsSelectStart] = useState<boolean>(false);
   const [isModalOpen, setModalIsOpen] = useState<boolean>(false);
@@ -24,7 +27,7 @@ export const App = () => {
   const [randomURLList4, setRandomURLList4] = useState<ResponseTopRatedMoviesType[]>([]);
 
   const selectStart = () => {
-    const element = document.querySelector('#introduction') as HTMLElement;
+    const element = document.querySelector(INTRODUCTION_SELECTOR) as HTMLElement;
     element.classList.add('fadeOut');
     setIsSelectStart(!isSelectStart);
     setAddButtonVisible(true);
@@ -39,7 +42,7 @@ export const App = () => {
     setResponseMovies([]);
   }
 
-  const inputMovieTitle = (event: { target: { value: string } }) => {
+  const inputMovieTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setMovieTitle(value);
   }
@@ -137,7 +140,7 @@ export const App = () => {
 
   // html2canvasを使用してキャプチャーを取得し、共有する
   const handleCapture = () => {
-    const element = document.querySelector('.l-albumList') as HTMLElement
+    const element = document.querySelector(L_ALBUMLIST_SELECTOR) as HTMLElement
     html2canvas(element, {
       useCORS: true
     }).then(canvas => {
