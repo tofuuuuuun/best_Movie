@@ -87,12 +87,12 @@ export const App = () => {
       }
     };
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURI(movieTitle)}&include_adult=false&language=ja-JA&region=JA&page=1`, options);
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieTitle)}&include_adult=false&language=ja-JA&region=JA&page=1`, options);
       if (!response.ok) {
         throw new Error('ネットワークエラーが発生しました。');
       }
       const data = await response.json();
-      setResponseMovies([...responseMovies, ...data["results"]]);
+      setResponseMovies((prevState) => [...prevState, ...data["results"]]);
     } catch {
       setErrorMessage('映画の検索中にエラーが発生しました。もう一度お試しください。');
     }

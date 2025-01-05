@@ -13,7 +13,7 @@ export const ResponseMovies = (props: ResponseMoviesProps) => {
                 <li className={`movieItems ${index === 0 ? 'first-item' : ''}`} key={index} >
                     <img className='moviePoster' src={setMoviePosterImage(movie.poster_path)} loading='lazy' />
                     <div className='l-movieInfo'>
-                        <span className='movieTitle font-wb'>{movie.title}</span>
+                        <span className='movieTitle p-all-1em font-wb'>{movie.title}</span>
                     </div>
                     <ResultCheckboxButton
                         id={movie.id}
